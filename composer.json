@@ -1,0 +1,16 @@
+{
+  "name": "weshooper/php-password-workflow",
+  "type": "library",
+  "require": {
+    "php": "^7.1",
+    "tuupola/base62": "^0.9.0",
+    "nesbot/carbon": "^1.23"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.6",
+    "phpunit/phpunit": "^6.2"
+  },
+  "autoload": {
+    "psr-4": {"WesHooper\\PhpPasswordWorkflow\\":"src/"}
+  }
+}
