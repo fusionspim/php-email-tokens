@@ -3,6 +3,7 @@ namespace WesHooper\PhpEmailTokens;
 
 use Carbon\Carbon;
 use DateTime;
+use PHPMailer\PHPMailer\PHPMailer;
 use Tuupola\Base62;
 
 class EmailToken
@@ -60,5 +61,19 @@ class EmailToken
     public function stillValid(Datetime $created): bool
     {
         return (Carbon::instance($created)->diffInMinutes() < $this->expiryMinutes);
+    }
+
+    public function sendEmail(PHPMailer $mailer, string $email, string $host, string $subject, string $template)
+    {
+        $mailer->ClearAllRecipients();
+        $mailer->addAddress($email);
+        $mailer->Subject = $subject;
+        $mailer->Body    = str_replace(
+            ['{{ host }}', '{{ token }}', '{{ expiry }}'],
+            [$host, $this->getEmailToken(), $this->getExpiryMinutes()],
+            $template
+        );
+
+        return $mailer->send();
     }
 }

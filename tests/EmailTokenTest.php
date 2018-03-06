@@ -1,4 +1,5 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
 use PHPUnit\Framework\TestCase;
 use WesHooper\PhpEmailTokens\EmailToken;
 
@@ -91,5 +92,38 @@ class EmailTokenTest extends TestCase
         $token = new EmailToken;
 
         $this->assertEquals($token->getDatabaseHash(), $token->hashFromToken($token->getEmailToken()));
+    }
+
+    public function test_email()
+    {
+        $result = (new EmailToken)->sendEmail(
+            $this->mockPHPMailer(),
+            'to@example.com',
+            'dev.example.com',
+            'Password reset',
+            "Set a new password @ https://{{ host }}/verify/{{ token }}\n\nLink expires in {{ expiry }} mins!"
+        );
+
+        $this->assertCount(1, $result['to']);
+        $this->assertContains('To: to@example.com', $result['header']);
+        $this->assertContains('Subject: Password reset', $result['header']);
+
+        $this->assertContains('Set a new password @ https://dev.example.com/verify/', $result['body']);
+        $this->assertContains('Link expires in 15 mins!', $result['body']);
+        $this->assertEquals(106, mb_strlen($result['body']));
+    }
+
+    private function mockPHPMailer(): PHPMailer
+    {
+        return new class extends PHPMailer {
+            protected $exceptions = true;
+            public $Mailer        = 'smtp';
+            public $From          = 'from@example.com';
+
+            public function Send() // Override to not actually send anything
+            {
+                return ($this->preSend() ? ['to' => $this->to, 'header' => $this->MIMEHeader, 'body' => $this->MIMEBody] : []);
+            }
+        };
     }
 }

@@ -53,6 +53,22 @@ $token->getExpiryMinutes(); // useful to mention in your email message
 $token->getTokenLength(); // not sure what you'd use this for!
 ```
 
+### Sending emails
+
+This bit is totally down to you. There's a helper function if you use [PHPMailer](https://github.com/PHPMailer/PHPMailer), but it's fairly specific and here more as a convenience to myself! :-)
+
+```
+$token->sendEmail(
+    $container['PHPMailer'],
+    'bob@example.com',
+    'dev-or-www.example.com,
+    'Password reset',
+    "Please choose a new password using the following link:\n
+    https://{{ host }}/verify/{{ token }}\n\n
+    The link will expire in {{ expiry }} minutes!"
+);
+```
+
 ## Credits
 
 [Comments](https://stackoverflow.com/questions/20013672/best-practice-on-generating-reset-password-tokens), [advice](https://security.stackexchange.com/questions/86913/should-password-reset-tokens-be-hashed-when-stored-in-a-database) and [code](https://security.stackexchange.com/questions/86913/should-password-reset-tokens-be-hashed-when-stored-in-a-database) from [Martin Stoeckli](https://www.martinstoeckli.ch/) were invaluable in getting my knowledge and understanding to the point of being happy with all this - thanks Martin! :-)
