@@ -11,7 +11,7 @@ Used in password reset (or sign up verification) emails, these need to be:
 ### Sample code for *forgot_password.php*
 
 ```
-$token = new PasswordToken;
+$token = new EmailToken;
 $token->getEmailToken(); // include in the link you email the user (don't store anywhere!)
 $token->getDatabaseHash(); // store against the user (128 character string) along with `tokenCreated`
 ```
@@ -21,7 +21,7 @@ $token->getDatabaseHash(); // store against the user (128 character string) alon
 ### Sample code for *reset_password.php*
 
 ```
-$token = new PasswordToken;
+$token = new EmailToken;
 $user  = loadFromHash($token->hashFromToken($_GET['token'])); // loadFromHash() is pseudo code, your bit!
 
 if ($user && $token->stillValid($user->tokenCreated)) { // DateTime/Carbon parameter (or validate in your SQL query)
@@ -39,9 +39,9 @@ An array can be passed in the constructor to override defaults:
 - **Token length:** the **24 character** default is nice and short for emails, but gives ~10,000,000,000,000,000,000,000,000,000,000,000,000,000,000 combinations for the 62 case-sensitive alphanumeric characters used - impossible to brute-force successfully ([20 or more is recommended](https://stackoverflow.com/questions/20013672/best-practice-on-generating-reset-password-tokens))
 
 ```
-new PasswordToken(['expiryMinutes' => 60]);
-new PasswordToken(['tokenLength' => 30]);
-new PasswordToken(['expiryMinutes' => 60, tokenLength' => 30]);
+new EmailToken(['expiryMinutes' => 60]);
+new EmailToken(['tokenLength' => 30]);
+new EmailToken(['expiryMinutes' => 60, tokenLength' => 30]);
 ```
 
 ### Helpers
@@ -55,4 +55,4 @@ $token->getTokenLength(); // not sure what you'd use this for!
 
 ## Credits
 
-[Comments](https://stackoverflow.com/questions/20013672/best-practice-on-generating-reset-password-tokens), [advice](https://security.stackexchange.com/questions/86913/should-password-reset-tokens-be-hashed-when-stored-in-a-database) and [code](https://security.stackexchange.com/questions/86913/should-password-reset-tokens-be-hashed-when-stored-in-a-database) from [Martin Stoeckli](https://www.martinstoeckli.ch/) were invaluable in getting my knowledge and understanding to the point of being happy with `PasswordToken` - thanks Martin! :-)
+[Comments](https://stackoverflow.com/questions/20013672/best-practice-on-generating-reset-password-tokens), [advice](https://security.stackexchange.com/questions/86913/should-password-reset-tokens-be-hashed-when-stored-in-a-database) and [code](https://security.stackexchange.com/questions/86913/should-password-reset-tokens-be-hashed-when-stored-in-a-database) from [Martin Stoeckli](https://www.martinstoeckli.ch/) were invaluable in getting my knowledge and understanding to the point of being happy with all this - thanks Martin! :-)
