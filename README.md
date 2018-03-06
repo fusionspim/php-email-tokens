@@ -43,7 +43,7 @@ if ($user && $token->stillValid($user->tokenCreated)) { // DateTime/Carbon param
 An array can be passed in the constructor to override defaults:
 
 - **Token expiry period:** the **15 minute** default allows for email delivery delays, but lowers the risk of emails sitting around in a possibly unattended email client
-- **Token length:** the **24 character** default is nice and short for emails, but gives [894,525,125,034,689,530,200 combinations](http://www.statisticshowto.com/calculators/permutation-calculator-and-combination-calculator/) of the 62 case-sensitive alphanumeric characters used ([20 or more is recommended](https://stackoverflow.com/questions/20013672/best-practice-on-generating-reset-password-tokens))
+- **Token length:** the **24 character** default is nice and short for emails, but gives ~10,000,000,000,000,000,000,000,000,000,000,000,000,000,000 combinations for the 62 case-sensitive alphanumeric characters used - impossible to brute-force successfully ([20 or more is recommended](https://stackoverflow.com/questions/20013672/best-practice-on-generating-reset-password-tokens))
 
 ```
 new PasswordToken(['expiryMinutes' => 60]);
