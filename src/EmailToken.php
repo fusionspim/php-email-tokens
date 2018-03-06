@@ -1,11 +1,11 @@
 <?php
-namespace WesHooper\PhpPasswordWorkflow;
+namespace WesHooper\PhpEmailTokens;
 
 use Carbon\Carbon;
 use DateTime;
 use Tuupola\Base62;
 
-class PasswordToken
+class EmailToken
 {
     private $expiryMinutes;
     private $hash;

@@ -1,5 +1,5 @@
 {
-  "name": "weshooper/php-password-workflow",
+  "name": "weshooper/php-email-tokens",
   "type": "library",
   "require": {
     "php": "^7.1",
@@ -11,6 +11,6 @@
     "phpunit/phpunit": "^6.2"
   },
   "autoload": {
-    "psr-4": {"WesHooper\\PhpPasswordWorkflow\\":"src/"}
+    "psr-4": {"WesHooper\\PhpEmailTokens\\":"src/"}
   }
 }
