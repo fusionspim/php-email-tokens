@@ -7,14 +7,14 @@ class EmailTokenTest extends TestCase
 {
     public function test_length_option()
     {
-        $this->assertEquals(24, (new EmailToken)->getTokenLength());
-        $this->assertEquals(32, (new EmailToken(['tokenLength' => 32]))->getTokenLength());
+        $this->assertSame(24, (new EmailToken)->getTokenLength());
+        $this->assertSame(32, (new EmailToken(['tokenLength' => 32]))->getTokenLength());
     }
 
     public function test_expiry_option()
     {
-        $this->assertEquals(15, (new EmailToken)->getExpiryMinutes());
-        $this->assertEquals(60, (new EmailToken(['expiryMinutes' => 60]))->getExpiryMinutes());
+        $this->assertSame(15, (new EmailToken)->getExpiryMinutes());
+        $this->assertSame(60, (new EmailToken(['expiryMinutes' => 60]))->getExpiryMinutes());
     }
 
     public function test_email_token_default()
@@ -22,7 +22,7 @@ class EmailTokenTest extends TestCase
         $token = new EmailToken;
 
         $this->assertTrue(ctype_alnum($token->getEmailToken()));
-        $this->assertEquals(24, strlen($token->getEmailToken()));
+        $this->assertSame(24, strlen($token->getEmailToken()));
     }
 
     public function test_email_token_longer()
@@ -31,17 +31,17 @@ class EmailTokenTest extends TestCase
         $token  = new EmailToken(['tokenLength' => $length]);
 
         $this->assertTrue(ctype_alnum($token->getEmailToken()));
-        $this->assertEquals($length, strlen($token->getEmailToken()));
+        $this->assertSame($length, strlen($token->getEmailToken()));
     }
 
     public function test_database_hash_default()
     {
-        $this->assertEquals(128, strlen((new EmailToken)->getDatabaseHash()));
+        $this->assertSame(128, strlen((new EmailToken)->getDatabaseHash()));
     }
 
     public function test_database_hash_longer()
     {
-        $this->assertEquals(128, strlen((new EmailToken(['tokenLength' => 32]))->getDatabaseHash()));
+        $this->assertSame(128, strlen((new EmailToken(['tokenLength' => 32]))->getDatabaseHash()));
     }
 
     public function test_still_valid_default()
@@ -76,7 +76,7 @@ class EmailTokenTest extends TestCase
         $tokenFromUser    = 'UAjERUW04rM2MGGt5w1Ysqh6';
         $hashFromDatabase = 'a565613c72da2d2a96023947c3369005149d4279de2d521094bd02de01327d0e4de3ad3d8ea4c257a94c156637baa13e8e56a4c9f54c90e857d333c996b14ec0';
 
-        $this->assertEquals($hashFromDatabase, (new EmailToken)->hashFromToken($tokenFromUser));
+        $this->assertSame($hashFromDatabase, (new EmailToken)->hashFromToken($tokenFromUser));
     }
 
     public function test_hash_from_token_invalid()
@@ -91,7 +91,7 @@ class EmailTokenTest extends TestCase
     {
         $token = new EmailToken;
 
-        $this->assertEquals($token->getDatabaseHash(), $token->hashFromToken($token->getEmailToken()));
+        $this->assertSame($token->getDatabaseHash(), $token->hashFromToken($token->getEmailToken()));
     }
 
     public function test_email()
@@ -110,7 +110,7 @@ class EmailTokenTest extends TestCase
 
         $this->assertContains('Set a new password @ https://dev.example.com/verify/', $result['body']);
         $this->assertContains('Link expires in 15 mins!', $result['body']);
-        $this->assertEquals(106, mb_strlen($result['body']));
+        $this->assertSame(106, mb_strlen($result['body']));
     }
 
     private function mockPHPMailer(): PHPMailer
