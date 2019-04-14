@@ -10,7 +10,7 @@ Used in password reset (or sign up verification) emails, these need to be:
 
 ### Sample code for *forgot_password.php*
 
-```
+```php
 $token = new EmailToken;
 $token->getEmailToken(); // include in the link you email the user (don't store anywhere!)
 $token->getDatabaseHash(); // store against the user (128 character string) along with `tokenCreated`
@@ -20,7 +20,7 @@ $token->getDatabaseHash(); // store against the user (128 character string) alon
 
 ### Sample code for *reset_password.php*
 
-```
+```php
 $token = new EmailToken;
 $user  = loadFromHash($token->hashFromToken($_GET['token'])); // loadFromHash() is pseudo code, your bit!
 
@@ -38,7 +38,7 @@ An array can be passed in the constructor to override defaults:
 - **Token expiry period:** the **15 minute** default allows for email delivery delays, but lowers the risk of emails sitting around in a possibly unattended email client
 - **Token length:** the **24 character** default is nice and short for emails, but gives ~10,000,000,000,000,000,000,000,000,000,000,000,000,000,000 combinations for the 62 case-sensitive alphanumeric characters used - impossible to brute-force successfully ([20 or more is recommended](https://stackoverflow.com/questions/20013672/best-practice-on-generating-reset-password-tokens))
 
-```
+```php
 new EmailToken(['expiryMinutes' => 60]);
 new EmailToken(['tokenLength' => 30]);
 new EmailToken(['expiryMinutes' => 60, tokenLength' => 30]);
@@ -48,7 +48,7 @@ new EmailToken(['expiryMinutes' => 60, tokenLength' => 30]);
 
 There are two helper functions:
 
-```
+```php
 $token->getExpiryMinutes(); // useful to mention in your email message
 $token->getTokenLength(); // not sure what you'd use this for!
 ```
@@ -57,7 +57,7 @@ $token->getTokenLength(); // not sure what you'd use this for!
 
 This bit is totally down to you. There's a helper function if you use [PHPMailer](https://github.com/PHPMailer/PHPMailer), but it's fairly specific and here more as a convenience to myself! :-)
 
-```
+```php
 $token->sendEmail(
     $container['PHPMailer'],
     'bob@example.com',
