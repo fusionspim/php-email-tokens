@@ -61,7 +61,7 @@ This bit is totally down to you. There's a helper function if you use [PHPMailer
 $token->sendEmail(
     $container['PHPMailer'],
     'bob@example.com',
-    'dev-or-www.example.com,
+    'dev-or-www.example.com',
     'Password reset',
     "Please choose a new password using the following link:\n
     https://{{ host }}/verify/{{ token }}\n\n
