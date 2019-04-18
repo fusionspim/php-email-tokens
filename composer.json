@@ -1,6 +1,7 @@
 {
   "name": "weshooper/php-email-tokens",
   "type": "library",
+  "license": "MIT",
   "require": {
     "php": "^7.1",
     "phpmailer/phpmailer": "^6.0",
