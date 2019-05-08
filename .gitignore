@@ -5,6 +5,5 @@
 cs_fixer_tmp_*
 .phpunit.result.cache
 
-composer.lock
 composer.phar
 vendor
