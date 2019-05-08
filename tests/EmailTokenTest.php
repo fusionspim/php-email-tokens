@@ -105,11 +105,11 @@ class EmailTokenTest extends TestCase
         );
 
         $this->assertCount(1, $result['to']);
-        $this->assertContains('To: to@example.com', $result['header']);
-        $this->assertContains('Subject: Password reset', $result['header']);
+        $this->assertStringContainsString('To: to@example.com', $result['header']);
+        $this->assertStringContainsString('Subject: Password reset', $result['header']);
 
-        $this->assertContains('Set a new password @ https://dev.example.com/verify/', $result['body']);
-        $this->assertContains('Link expires in 15 mins!', $result['body']);
+        $this->assertStringContainsString('Set a new password @ https://dev.example.com/verify/', $result['body']);
+        $this->assertStringContainsString('Link expires in 15 mins!', $result['body']);
         $this->assertSame(106, mb_strlen($result['body']));
     }
 
