@@ -1,7 +1,7 @@
 {
   "name": "weshooper/php-email-tokens",
-  "type": "library",
   "description": "Generate secure tokens for use in emails (password reset, signup verification)",
+  "keywords": ["email", "password", "security", "token"],
   "license": "MIT",
   "require": {
     "php": "^7.2",
