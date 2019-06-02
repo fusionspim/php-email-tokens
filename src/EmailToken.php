@@ -19,12 +19,6 @@ class EmailToken
         $this->tokenLength   = (int) ($options['tokenLength'] ?? 24);
     }
 
-    private function generate(): void
-    {
-        $this->token = substr((new Base62)->encode(random_bytes(128)), 0, $this->tokenLength);
-        $this->hash  = $this->hashFromToken($this->token);
-    }
-
     public function getDatabaseHash(): string
     {
         if (! isset($this->hash)) {
@@ -75,5 +69,11 @@ class EmailToken
         );
 
         return $mailer->send();
+    }
+
+    private function generate(): void
+    {
+        $this->token = mb_substr((new Base62)->encode(random_bytes(128)), 0, $this->tokenLength);
+        $this->hash  = $this->hashFromToken($this->token);
     }
 }
