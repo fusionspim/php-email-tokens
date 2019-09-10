@@ -48,27 +48,27 @@ class EmailTokenTest extends TestCase
     {
         $token = new EmailToken;
 
-        $this->assertTrue($token->stillValid(new DateTime('0 minutes ago')));
-        $this->assertTrue($token->stillValid(new DateTime('5 minutes ago')));
-        $this->assertTrue($token->stillValid(new DateTime('14 minutes ago')));
-        $this->assertFalse($token->stillValid(new DateTime('15 minutes ago')));
-        $this->assertFalse($token->stillValid(new DateTime('16 minutes ago')));
-        $this->assertFalse($token->stillValid(new DateTime('20 minutes ago')));
-        $this->assertFalse($token->stillValid(new DateTime('20 minutes ago')));
-        $this->assertFalse($token->stillValid(new DateTime('2 weeks ago')));
+        $this->assertTrue($token->stillValid(new DateTimeImmutable('0 minutes ago')));
+        $this->assertTrue($token->stillValid(new DateTimeImmutable('5 minutes ago')));
+        $this->assertTrue($token->stillValid(new DateTimeImmutable('14 minutes ago')));
+        $this->assertFalse($token->stillValid(new DateTimeImmutable('15 minutes ago')));
+        $this->assertFalse($token->stillValid(new DateTimeImmutable('16 minutes ago')));
+        $this->assertFalse($token->stillValid(new DateTimeImmutable('20 minutes ago')));
+        $this->assertFalse($token->stillValid(new DateTimeImmutable('20 minutes ago')));
+        $this->assertFalse($token->stillValid(new DateTimeImmutable('2 weeks ago')));
     }
 
     public function test_still_valid_longer(): void
     {
         $token = new EmailToken(['expiryMinutes' => 30]);
 
-        $this->assertTrue($token->stillValid(new DateTime('0 minutes ago')));
-        $this->assertTrue($token->stillValid(new DateTime('10 minutes ago')));
-        $this->assertTrue($token->stillValid(new DateTime('20 minutes ago')));
-        $this->assertFalse($token->stillValid(new DateTime('30 minutes ago')));
-        $this->assertFalse($token->stillValid(new DateTime('40 minutes ago')));
-        $this->assertFalse($token->stillValid(new DateTime('80 minutes ago')));
-        $this->assertFalse($token->stillValid(new DateTime('3 days ago')));
+        $this->assertTrue($token->stillValid(new DateTimeImmutable('0 minutes ago')));
+        $this->assertTrue($token->stillValid(new DateTimeImmutable('10 minutes ago')));
+        $this->assertTrue($token->stillValid(new DateTimeImmutable('20 minutes ago')));
+        $this->assertFalse($token->stillValid(new DateTimeImmutable('30 minutes ago')));
+        $this->assertFalse($token->stillValid(new DateTimeImmutable('40 minutes ago')));
+        $this->assertFalse($token->stillValid(new DateTimeImmutable('80 minutes ago')));
+        $this->assertFalse($token->stillValid(new DateTimeImmutable('3 days ago')));
     }
 
     public function test_hash_from_token_valid(): void

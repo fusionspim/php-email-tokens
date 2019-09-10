@@ -2,7 +2,7 @@
 namespace WesHooper\PhpEmailTokens;
 
 use Carbon\Carbon;
-use DateTime;
+use DateTimeImmutable;
 use PHPMailer\PHPMailer\PHPMailer;
 use Tuupola\Base62;
 
@@ -52,7 +52,7 @@ class EmailToken
         return hash('sha512', $token); // unsalted is fine, since brute forcing such random tokens unlikely
     }
 
-    public function stillValid(Datetime $created): bool
+    public function stillValid(DateTimeImmutable $created): bool
     {
         return (Carbon::instance($created)->diffInMinutes() < $this->expiryMinutes);
     }
