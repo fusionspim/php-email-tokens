@@ -13,7 +13,7 @@ blocks:
     task:
       prologue:
         commands:
-          - sem-version php 7.2.10 # Be explicit, even when using the default (in case the default changes)
+          - sem-version php 7.3.0 # Be explicit, even when using the default (in case the default changes)
           - checkout
       jobs:
       - name: Composer install
@@ -25,12 +25,14 @@ blocks:
     task:
       prologue:
         commands:
-          - sem-version php 7.2.10 # Be explicit, even when using the default (in case the default changes)
+          - sem-version php 7.3.0 # Be explicit, even when using the default (in case the default changes)
           - checkout
           - cache restore composer-$SEMAPHORE_GIT_BRANCH-$(checksum composer.lock),composer-$SEMAPHORE_GIT_BRANCH,composer-master
           - export "PATH=./vendor/bin:${PATH}" # Prepend vendor/bin to the path so we can use dependency executables
       jobs:
       - name: Tests
         commands:
-          - php-cs-fixer fix --config=.php_cs.dist --dry-run --diff -v # Too few files to restrict via CHANGED_FILES
+          - cache restore php-cs-fixer-cache
+          - php-cs-fixer fix --config=.php_cs.dist --dry-run --diff -v --stop-on-violation
+          - cache store php-cs-fixer-cache .php_cs.cache
           - phpunit --stop-on-failure
