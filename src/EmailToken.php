@@ -12,6 +12,7 @@ class EmailToken
     private $hash;
     private $token;
     private $tokenLength;
+    private $urlFormatter;
 
     public function __construct(array $options = [])
     {
@@ -47,6 +48,11 @@ class EmailToken
         return $this->expiryMinutes;
     }
 
+    public function getUrl($urlTemplate)
+    {
+        return str_replace('{{ token }}', $this->getEmailToken(), $urlTemplate);
+    }
+
     public function hashFromToken(string $token): string
     {
         return hash('sha512', $token); // unsalted is fine, since brute forcing such random tokens unlikely
@@ -57,15 +63,15 @@ class EmailToken
         return (Carbon::instance($created)->diffInMinutes() < $this->expiryMinutes);
     }
 
-    public function sendEmail(PHPMailer $mailer, string $email, string $host, string $subject, string $template)
+    public function sendEmail(PHPMailer $mailer, string $email, string $subject, string $urlTemplate, string $emailTemplate)
     {
         $mailer->ClearAllRecipients();
         $mailer->addAddress($email);
         $mailer->Subject = $subject;
         $mailer->Body    = str_replace(
-            ['{{ host }}', '{{ token }}', '{{ expiry }}'],
-            [$host, $this->getEmailToken(), $this->getExpiryMinutes()],
-            $template
+            ['{{ expiry }}', '{{ url }}'],
+            [$this->getExpiryMinutes(), $this->getUrl($urlTemplate)],
+            $emailTemplate
         );
 
         return $mailer->send();
