@@ -99,9 +99,9 @@ class EmailTokenTest extends TestCase
         $result = (new EmailToken)->sendEmail(
             $this->mockPHPMailer(),
             'to@example.com',
-            'dev.example.com',
             'Password reset',
-            "Set a new password @ https://{{ host }}/verify/{{ token }}\n\nLink expires in {{ expiry }} mins!"
+            'https://dev.example.com/verify/{{ token }}',
+            "Set a new password @ {{ url }}\n\nLink expires in {{ expiry }} mins!"
         );
 
         $this->assertCount(1, $result['to']);
