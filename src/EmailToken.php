@@ -48,6 +48,9 @@ class EmailToken
         return $this->expiryMinutes;
     }
 
+    /**
+     * @deprecated Handle this in own code, will be removed in next major version
+     */
     public function getUrl($urlTemplate)
     {
         return str_replace('{{ token }}', $this->getEmailToken(), $urlTemplate);
@@ -63,6 +66,9 @@ class EmailToken
         return (Carbon::instance($created)->diffInMinutes() < $this->expiryMinutes);
     }
 
+    /**
+     * @deprecated Handle this in own code, will be removed in next major version
+     */
     public function sendEmail(PHPMailer $mailer, string $email, string $subject, string $urlTemplate, string $emailTemplate)
     {
         $mailer->ClearAllRecipients();
