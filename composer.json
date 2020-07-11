@@ -5,7 +5,6 @@
   "license": "MIT",
   "require": {
     "php": "^7.3",
-    "phpmailer/phpmailer": "^6.0",
     "nesbot/carbon": "^1.26.3 || ^2.0",
     "tuupola/base62": "^2.0",
     "ext-mbstring": "^7.2"
