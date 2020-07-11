@@ -11,7 +11,7 @@
     "ext-mbstring": "^7.2"
   },
   "require-dev": {
-    "fusionspim/php-cs-fixer-config": "^4.0.0",
+    "fusionspim/php-cs-fixer-config": "^6.0.0",
     "phpunit/phpunit": "^9.0.0"
   },
   "autoload": {
