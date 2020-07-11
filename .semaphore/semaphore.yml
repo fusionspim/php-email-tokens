@@ -32,7 +32,5 @@ blocks:
       jobs:
       - name: Tests
         commands:
-          - cache restore php-cs-fixer-cache
           - php-cs-fixer fix --config=.php_cs.dist --dry-run --diff -v --stop-on-violation
-          - cache store php-cs-fixer-cache .php_cs.cache
           - phpunit --stop-on-failure
