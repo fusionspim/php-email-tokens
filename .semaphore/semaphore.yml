@@ -15,8 +15,8 @@ blocks:
         commands:
           - phpbrew use php-7.4.6
           - checkout
-          - cache restore composer-$SEMAPHORE_GIT_BRANCH-$(checksum composer.lock),composer-$SEMAPHORE_GIT_BRANCH,composer-master
-          - export "PATH=./vendor/bin:${PATH}" # Prepend vendor/bin to the path so we can use dependency executables
+          - cache restore # composer-$SEMAPHORE_GIT_BRANCH-$(checksum composer.lock),composer-$SEMAPHORE_GIT_BRANCH,composer-master
+#          - export "PATH=./vendor/bin:${PATH}" # Prepend vendor/bin to the path so we can use dependency executables
       jobs:
       - name: Composer, CS & unit tests
         commands:
@@ -26,4 +26,4 @@ blocks:
       epilogue:
         always:
           commands:
-            - cache store composer-$SEMAPHORE_GIT_BRANCH-$(checksum composer.lock) vendor
+            - cache store # composer-$SEMAPHORE_GIT_BRANCH-$(checksum composer.lock) vendor
