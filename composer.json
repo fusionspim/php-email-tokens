@@ -4,8 +4,8 @@
   "keywords": ["email", "password", "security", "token"],
   "license": "MIT",
   "require": {
-    "php": "^7.3",
-    "nesbot/carbon": "^1.26.3 || ^2.0",
+    "php": "^7.4",
+    "nesbot/carbon": "^2.0",
     "tuupola/base62": "^2.0",
     "ext-mbstring": "^7.2"
   },
