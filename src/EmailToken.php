@@ -11,7 +11,6 @@ class EmailToken
     private $hash;
     private $token;
     private $tokenLength;
-    private $urlFormatter;
 
     public function __construct(array $options = [])
     {
@@ -52,7 +51,7 @@ class EmailToken
         return hash('sha512', $token); // unsalted is fine, since brute forcing such random tokens unlikely
     }
 
-    public function stillValid(DateTimeInterface $created): bool
+    public function stillValid(DateTimeInterface $created): bool // Carbon possibly excessive, and may not be tz safe?
     {
         return (Carbon::instance($created)->diffInMinutes() < $this->expiryMinutes);
     }
