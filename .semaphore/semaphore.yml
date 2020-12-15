@@ -16,7 +16,7 @@ blocks:
             - checkout
             - cache restore # Composer dependencies
             - export "PATH=./vendor/bin:${PATH}" # So we can use dependency executables
-            - composer install --prefer-dist --no-suggest --no-interaction
+            - composer install --prefer-dist --no-interaction
             - php-cs-fixer fix --config=.php_cs.dist --dry-run --diff --verbose --stop-on-violation
             - phpunit --stop-on-failure
             - cache store
