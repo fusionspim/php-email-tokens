@@ -1,7 +1,7 @@
 .idea
 .DS_Store
 
-.php_cs.cache
+.php-cs-fixer.cache
 cs_fixer_tmp_*
 .phpunit.result.cache
 
