@@ -9,8 +9,8 @@
   ],
   "license": "MIT",
   "require": {
-    "php": "^7.4",
-    "ext-mbstring": "^7.2",
+    "php": "^7.4 || ^8.0",
+    "ext-mbstring": "^7.4 || ^8.0",
     "nesbot/carbon": "^2.0",
     "tuupola/base62": "^2.0"
   },
