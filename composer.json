@@ -1,13 +1,13 @@
 {
   "name": "weshooper/php-email-tokens",
   "description": "Generate secure tokens for use in emails (password reset, signup verification)",
+  "license": "MIT",
   "keywords": [
     "email",
     "password",
     "security",
     "token"
   ],
-  "license": "MIT",
   "require": {
     "php": "^7.4 || ^8.0",
     "ext-mbstring": "^7.4 || ^8.0",
