@@ -7,10 +7,10 @@ use Tuupola\Base62;
 
 class EmailToken
 {
-    private $expiryMinutes;
-    private $hash;
-    private $token;
-    private $tokenLength;
+    private int $expiryMinutes;
+    private int $tokenLength;
+    private string|null $hash  = null;
+    private string|null $token = null;
 
     public function __construct(array $options = [])
     {
