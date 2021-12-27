@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ea1f17bcfa2456df23cfad8e1eb1e623",
+    "content-hash": "52bcf129f878b053a5354fea177d2c1c",
     "packages": [
         {
             "name": "nesbot/carbon",
@@ -1246,22 +1246,22 @@
         },
         {
             "name": "fusionspim/php-cs-fixer-config",
-            "version": "9.1.0",
+            "version": "10.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fusionspim/php-cs-fixer-config.git",
-                "reference": "89343b308df15b6994d593fad0706cd9b3180f02"
+                "reference": "106856025ea229c36cb1745fe1040f696b7856b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fusionspim/php-cs-fixer-config/zipball/89343b308df15b6994d593fad0706cd9b3180f02",
-                "reference": "89343b308df15b6994d593fad0706cd9b3180f02",
+                "url": "https://api.github.com/repos/fusionspim/php-cs-fixer-config/zipball/106856025ea229c36cb1745fe1040f696b7856b0",
+                "reference": "106856025ea229c36cb1745fe1040f696b7856b0",
                 "shasum": ""
             },
             "require": {
                 "friendsofphp/php-cs-fixer": "^3.1.0",
                 "kubawerlos/php-cs-fixer-custom-fixers": "^3.0",
-                "php": "^7.4 || ^8.0"
+                "php": "^8.0"
             },
             "require-dev": {
                 "ergebnis/composer-normalize": "^2.13"
@@ -1283,9 +1283,9 @@
             ],
             "support": {
                 "issues": "https://github.com/fusionspim/php-cs-fixer-config/issues",
-                "source": "https://github.com/fusionspim/php-cs-fixer-config/tree/9.1.0"
+                "source": "https://github.com/fusionspim/php-cs-fixer-config/tree/10.0.0"
             },
-            "time": "2021-11-19T12:41:25+00:00"
+            "time": "2021-12-21T13:46:29+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
