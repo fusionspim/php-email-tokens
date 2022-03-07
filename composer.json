@@ -3,17 +3,17 @@
   "description": "Generate secure tokens for use in emails (password reset, signup verification)",
   "license": "MIT",
   "type": "library",
-  "authors": [
-    {
-      "name": "Fusions PIM",
-      "email": "info@fusionspim.com"
-    }
-  ],
   "keywords": [
     "email",
     "password",
     "security",
     "token"
+  ],
+  "authors": [
+    {
+      "name": "Fusions PIM",
+      "email": "info@fusionspim.com"
+    }
   ],
   "require": {
     "php": "^8.0",
