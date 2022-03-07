@@ -1,7 +1,14 @@
 {
-  "name": "weshooper/php-email-tokens",
+  "name": "fusionspim/php-email-tokens",
   "description": "Generate secure tokens for use in emails (password reset, signup verification)",
   "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Fusions PIM",
+      "email": "info@fusionspim.com"
+    }
+  ],
   "keywords": [
     "email",
     "password",
@@ -21,7 +28,7 @@
   },
   "autoload": {
     "psr-4": {
-      "WesHooper\\PhpEmailTokens\\": "src/"
+      "Fusions\\PhpEmailTokens\\": "src/"
     }
   },
   "scripts": {
