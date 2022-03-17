@@ -1,6 +1,6 @@
 <?php
-use PHPUnit\Framework\TestCase;
 use FusionsPim\PhpEmailTokens\EmailToken;
+use PHPUnit\Framework\TestCase;
 
 class EmailTokenTest extends TestCase
 {
