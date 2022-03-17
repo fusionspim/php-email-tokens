@@ -1,5 +1,5 @@
 <?php
-namespace WesHooper\PhpEmailTokens;
+namespace FusionsPim\PhpEmailTokens;
 
 use Carbon\Carbon;
 use DateTimeInterface;
